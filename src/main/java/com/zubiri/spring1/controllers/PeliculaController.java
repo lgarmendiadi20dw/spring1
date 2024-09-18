@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zubiri.spring1.aplicacion.IAplicacionPeliculas;
+import com.zubiri.spring1.dominio.Actor;
+import com.zubiri.spring1.dominio.Director;
 import com.zubiri.spring1.dominio.Pelicula;
 import java.util.List;
 
@@ -21,23 +23,32 @@ public class PeliculaController {
 
     @GetMapping("/insertData")
     public String getData(){
-        
-        Pelicula peli=new Pelicula("1","Barbie1",2002,"yo");
-        Pelicula peli1=new Pelicula("2","Barbie2",2002,"yo");
-        Pelicula peli2=new Pelicula("3","Barbie3",2002,"yo");
+        Director director= new Director("Leire",10);
+        List<Actor> actores=null;
+
+        Pelicula peli=new Pelicula("Barbie1",2002,director, actores);
+        Pelicula peli1=new Pelicula("Barbie2",2002,director, actores);
+        Pelicula peli2=new Pelicula("Barbie3",2002,director, actores);
+        Pelicula peli3=new Pelicula("Barbie4",2003,director, actores);
 
         aplicacionPeliculas.insetPelicula(peli);
         aplicacionPeliculas.insetPelicula(peli1);
         aplicacionPeliculas.insetPelicula(peli2);
+        aplicacionPeliculas.insetPelicula(peli3);
         return "Datos insertados con exito";
     }
 
     @GetMapping("/{id}")
-    public Pelicula mostrarPelicula(@PathVariable String id){
+    public Pelicula mostrarPelicula(@PathVariable int id){
         return aplicacionPeliculas.getPelicula(id);
     }
 
-    @GetMapping("/getPelicula")
+    @GetMapping("/anyo/{anyo}")
+    public List<Pelicula> mostrarPeliculasAnyo(@PathVariable int anyo){
+        return aplicacionPeliculas.mostrarPeliculasAnyo(anyo);
+    }
+
+    @GetMapping("/getPeliculas")
     public List<Pelicula> peliculas(){
         return aplicacionPeliculas.getPeliculas();
     }

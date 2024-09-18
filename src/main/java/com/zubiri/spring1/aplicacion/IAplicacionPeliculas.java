@@ -6,9 +6,10 @@ import java.util.List;
 public interface IAplicacionPeliculas {
 
     
-    public abstract Pelicula getPelicula(String id);
+    public abstract Pelicula getPelicula(int id);
 
     public abstract List<Pelicula> getPeliculas();
 
-    public abstract void insetPelicula(Pelicula pelicula);
+    public abstract     String insetPelicula(Pelicula pelicula);
+    public abstract List<Pelicula> mostrarPeliculasAnyo(int anyo);
 }
