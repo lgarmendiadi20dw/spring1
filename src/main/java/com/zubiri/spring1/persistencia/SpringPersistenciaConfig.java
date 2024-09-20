@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Bean;
 
 import com.zubiri.spring1.dominio.Actor;
 import com.zubiri.spring1.dominio.Director;
+import com.zubiri.spring1.dominio.Evento;
 import com.zubiri.spring1.dominio.Pelicula;
 import com.zubiri.spring1.dominio.Personal;
+import com.zubiri.spring1.dominio.Premio;
 
 @org.springframework.context.annotation.Configuration
 public class SpringPersistenciaConfig {
@@ -19,7 +21,13 @@ public class SpringPersistenciaConfig {
     @Bean
     public Session getSession(){
         Configuration conf= new Configuration();
-        SessionFactory factory =conf.configure().addAnnotatedClass(Personal.class).addAnnotatedClass(Director.class).addAnnotatedClass(Actor.class).addAnnotatedClass(Pelicula.class).buildSessionFactory();
+        SessionFactory factory =conf.configure().addAnnotatedClass(Evento.class)
+                                                .addAnnotatedClass(Premio.class)
+                                                .addAnnotatedClass(Personal.class)
+                                                .addAnnotatedClass(Director.class)
+                                                .addAnnotatedClass(Actor.class)
+                                                .addAnnotatedClass(Pelicula.class)
+                                                .buildSessionFactory();
         Session session=factory.openSession();
         return session;
     }

@@ -9,6 +9,8 @@ import com.zubiri.spring1.aplicacion.IAplicacionPeliculas;
 import com.zubiri.spring1.dominio.Actor;
 import com.zubiri.spring1.dominio.Director;
 import com.zubiri.spring1.dominio.Pelicula;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -24,7 +26,11 @@ public class PeliculaController {
     @GetMapping("/insertData")
     public String getData(){
         Director director= new Director("Leire",10);
-        List<Actor> actores=null;
+        List<Actor> actores=new ArrayList<>();
+        Actor actor1=new Actor("a",1000000,3),
+        actor2=new Actor("e",10000,1);
+        actores.add(actor1);
+        actores.add(actor2);
 
         Pelicula peli=new Pelicula("Barbie1",2002,director, actores);
         Pelicula peli1=new Pelicula("Barbie2",2002,director, actores);
@@ -35,7 +41,7 @@ public class PeliculaController {
         aplicacionPeliculas.insetPelicula(peli1);
         aplicacionPeliculas.insetPelicula(peli2);
         aplicacionPeliculas.insetPelicula(peli3);
-        return "Datos insertados con exito";
+        return " ";
     }
 
     @GetMapping("/{id}")

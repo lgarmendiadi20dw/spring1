@@ -3,8 +3,11 @@ package com.zubiri.spring1.persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zubiri.spring1.dominio.Actor;
 import com.zubiri.spring1.dominio.Director;
+import com.zubiri.spring1.dominio.Evento;
 import com.zubiri.spring1.dominio.Pelicula;
+import com.zubiri.spring1.dominio.Premio;
 
 import lombok.AllArgsConstructor;
 
@@ -25,7 +28,23 @@ public class PersistenciaPelicula implements IPersistenciaPelicula {
     }
     @Override
     public boolean addPelicula(Pelicula pelicula) {
+        Evento evento=new Evento("Oscars", "USA");
+        Premio premio1=new Premio("Mejor actor", evento);
+        Premio premio2=new Premio("Mejor director", evento);
         try {
+
+            session.beginTransaction();
+            session.persist(premio1);
+            session.persist(premio2);
+            session.getTransaction().commit();
+
+            for (Actor a :pelicula.getActores()) {
+                session.beginTransaction();
+                session.persist(a);
+                session.getTransaction().commit();
+            }
+
+
             if(!guardarDirector(pelicula.getDirector())){
                 pelicula.setDirector(getDirectorByNombre(pelicula.getDirector().getName()));
             }
@@ -41,6 +60,7 @@ public class PersistenciaPelicula implements IPersistenciaPelicula {
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             session.getTransaction().rollback();
         }
         return false;

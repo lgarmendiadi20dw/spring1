@@ -20,6 +20,9 @@ public class Personal {
 
     @Column(unique = true)
     private String name;
+
+
+    //agrgar OneToMany a premios ganados
     public Personal (String name){
         this.name=name;
     }
