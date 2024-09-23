@@ -28,15 +28,15 @@ public class PersistenciaPelicula implements IPersistenciaPelicula {
     }
     @Override
     public boolean addPelicula(Pelicula pelicula) {
-        Evento evento=new Evento("Oscars", "USA");
-        Premio premio1=new Premio("Mejor actor", evento);
-        Premio premio2=new Premio("Mejor director", evento);
+        // Evento evento=new Evento("Oscars", "USA");
+        // Premio premio1=new Premio("Mejor actor", evento);
+        // Premio premio2=new Premio("Mejor director", evento);
         try {
 
-            session.beginTransaction();
-            session.persist(premio1);
-            session.persist(premio2);
-            session.getTransaction().commit();
+            // session.beginTransaction();
+            // session.persist(premio1);
+            // session.persist(premio2);
+            // session.getTransaction().commit();
 
             for (Actor a :pelicula.getActores()) {
                 session.beginTransaction();

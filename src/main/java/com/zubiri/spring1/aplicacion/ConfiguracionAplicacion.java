@@ -20,6 +20,8 @@ public IAplicacionPeliculas getAplicacionPeliculas(IPersistenciaPelicula persist
     return to_return;
 }
 
+
+
 //     @Bean
 //    public IAplicacionPeliculas getAplicacionPeliculas(){
 //     List<Pelicula> peliculas=new ArrayList<Pelicula>();

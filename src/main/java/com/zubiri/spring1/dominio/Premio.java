@@ -1,29 +1,25 @@
 package com.zubiri.spring1.dominio;
 
+
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "Premio", uniqueConstraints= @UniqueConstraint(columnNames = {"titulo", "lugar_event"}))
-public class Premio {
-    @Id
-    @GeneratedValue
-    private int id;
+public abstract class Premio {
+    
+    @EmbeddedId
+    private PremioId premioId;
 
-    private String titulo;
-
+    @ManyToOne
+    @JoinColumn(name="evento")
     private Evento evento;
 
-    public Premio(String titulo, Evento evento){
-        this.titulo=titulo;
-        this.evento=evento;
-    }
 }
